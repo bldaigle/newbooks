@@ -6,14 +6,14 @@
 		<title>New Books at the Library</title>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>		
 		<script type="text/javascript" language="javascript" src="js/lightslider.js"></script>
-		<link rel="stylesheet" type="text/css" href="http://library.owu.edu/sandbox/newbooks/v2/css/lightslider.css" />
+		<link rel="stylesheet" type="text/css" href="css/lightslider.css" />
 	</head>
 
 	<body>
 		<div id="newbooks"></div>
 
 		<script type="text/javascript">
-			var url = 'http://consort.library.denison.edu/feeds/dennewstuff.xml';
+			var url = ' '; // Add the URL for the Sierra RSS feed here
 			var container = '#newbooks';
 			var getItems = 
 				$.ajax({
@@ -28,7 +28,7 @@
 			      			var catalogLink = value.link;
 			      			var bookTitle = value.title;
 			      			var shortTitle = $.trim(bookTitle).substring(0, 75) + '...';
-			      			var defaultCover = '<img src="http://library.owu.edu/sandbox/newbooks/img/book-icon.png" />'
+			      			var defaultCover = '<img src="img/book-icon.png" />'
 			      			var thehtml = '<div class="coverArt"><a href='+catalogLink+'>'+defaultCover+'</a><div class="bookTitle"><a href="'+catalogLink+'">'+shortTitle+'</a></div>'+covers+'</div>';
 			        		$(container).append(thehtml);
 			      		});
