@@ -2,7 +2,7 @@
 A horizontal content slider that reads a Sierra RSS feed and returns book covers that link to their records in the library catalog.
 
 This script will create a horizontal content slider of book covers, based on a Sierra RSS feed. Here's a working example:
-http://bendaigle.ohio5.org/dev/newbooks
+https://bendaigle.ohio5.org/dev/newbooks
 
 The slider can be embedded into any [webpage](https://github.com/bldaigle/newbooks/wiki/Add-new-books-to-any-web-page), or you could embed it into a [LibGuide](https://github.com/bldaigle/newbooks/wiki/Add-new-books-to-a-LibGuide).
 
