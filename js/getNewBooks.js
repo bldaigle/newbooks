@@ -14,7 +14,7 @@ function getNewBooks(url, container) {
 	      			var bookTitle = value.title;
 	      			var shortTitle = $.trim(bookTitle).substring(0, 75) + '...';
 	      			var defaultCover = '<img src="https://bendaigle.ohio5.org/dev/newbooks/img/book-icon.png" />'
-	      			var thehtml = '<div class="coverArt"><a href='+catalogLink+'>'+defaultCover+'</a><div class="bookTitle"><a href="'+catalogLink+'">'+shortTitle+'</a></div>'+covers+'</div>';
+	      			var thehtml = '<div class="coverArt"><a href='+catalogLink+'>'+defaultCover+' target="_blank"</a><div class="bookTitle"><a href="'+catalogLink+'">'+shortTitle+'</a></div>'+covers+'</div>';
 	        		$(container).append(thehtml);
 	      		});
 	    	},
