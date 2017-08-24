@@ -1,14 +1,17 @@
+// This script originally used the YQL Console as a service to convert the RSS response from XML to JSON so that it could be parsed. 
+// On August 24, 2017, though, this service ceased to become reliable. It was returning HTTP 400 errors. Luckily, a new API from the
+// site rss2json is available so the script below was updated to point to that API. See https://rss2json.com/docs for documentation.
 
 function getNewBooks(url, container) {
 	var getBooks = 
 		$.ajax({
-	    	url: document.location.protocol + '//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D\'' + encodeURIComponent(url) + '\'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=',
+	    	url: document.location.protocol + '//api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(url),
 	    	beforeSend: function() {
 	      		$(container).html('<div class="loading"><img srce="https://bendaigle.ohio5.org/dev/newbooks/img/loader.gif" /></div>');
 	    	},
 	    	dataType: 'json',
 	    	success: function(data) {
-	      		$.each(data.query.results.rss.channel.item, function(key, value){
+	      		$.each(data.items, function(key, value){
 	      			var covers = value.description;
 	      			$('.lSSlideOuter a').attr('target','_blank');
 	      			var catalogLink = value.link;
