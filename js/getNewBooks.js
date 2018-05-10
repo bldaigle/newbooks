@@ -5,22 +5,44 @@
 function getNewBooks(url, container) {
 	var getBooks = 
 		$.ajax({
-	    	url: document.location.protocol + '//api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(url),
+	    	url: document.location.protocol + '//api.rss2json.com/v1/api.json?count=100&rss_url=' + encodeURIComponent(url),
 	    	beforeSend: function() {
 	      		$(container).html('<div class="loading"><img srce="https://bendaigle.ohio5.org/dev/newbooks/img/loader.gif" /></div>');
 	    	},
 	    	dataType: 'json',
 	    	success: function(data) {
-	      		$.each(data.items, function(key, value){
-	      			var covers = value.description;
+	      		$.each(data.items, function(key, value) {
 	      			$('.lSSlideOuter a').attr('target','_blank');
-	      			var catalogLink = value.link;
 	      			var bookTitle = value.title;
-	      			var shortTitle = $.trim(bookTitle).substring(0, 75) + '...';
-	      			var defaultCover = '<img src="https://bendaigle.ohio5.org/dev/newbooks/img/book-icon.png" />'
-	      			var thehtml = '<div class="coverArt"><a href='+catalogLink+'>'+defaultCover+'</a><div class="bookTitle"><a href="'+catalogLink+'">'+shortTitle+'</a></div>'+covers+'</div>';
-	        		$(container).append(thehtml);
+	      			var shortTitle = $.trim(bookTitle).substring(0,75) + '...';
+	      			var cover = value.thumbnail;
+	      			var catalogLink = value.link;
+	      			var defaultCover = '<img src="https://bendaigle.ohio5.org/dev/newbooks/img/book-icon.png" alt="' + bookTitle + '" />';
+
+	      			if (cover.length > 0) {
+	      				var thehtml = '<div class="coverArt"><a href="' + catalogLink + '"><img src="' + cover + '" alt="' + bookTitle + '" /></a></div>'
+
+	      			} else {
+	      				var thehtml = '<div class="coverArt"><a href="' + catalogLink + '">' + defaultCover + '</a><div class="bookTitle"><a href="' + catalogLink + '">' + shortTitle + '</a></div></div>'
+	      			}
+	      			
+	      			// var thehtml = '<div class="coverArt"><a href="' + catalogLink + '">' + defaultCover + '</a><div class="bookTitle"><a href="' + catalogLink + '">' + shortTitle + '</a></div><a href="' + catalogLink +'"><img src="' + cover + '" alt="' + bookTitle + '"/></a></div>';
+	      			$(container).append(thehtml);
 	      		});
+
+	      		//$.each(data.items, function(key, value){
+	      		//	$('.lSSlideOuter a').attr('target','_blank');
+	      		//	var catalogLink = value.link;
+	      		//	var bookTitle = value.title;
+	      		//	var shortTitle = $.trim(bookTitle).substring(0, 75) + '...';
+	      		//	var covers = value.description;
+	      		//	var imgAttr = $(this.content).find('img').attr('alt');
+	      		//	console.log(imgAttr);
+	      		//	var defaultCover = '<img alt="' + bookTitle + '" src="https://bendaigle.ohio5.org/dev/newbooks/img/book-icon.png" />'
+	      		//	var thehtml = '<div class="coverArt"><a href='+catalogLink+'>'+defaultCover+'</a><div class="bookTitle"><a href="'+catalogLink+'">'+shortTitle+'</a></div>'+covers+'</div>';
+	        	//	$(container).append(thehtml);
+
+	      		//});
 	    	},
 	    	error: function() {
 	      		$(container).html('<p>Oops! Try that again in a few moments.</p>');
