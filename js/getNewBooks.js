@@ -10,7 +10,7 @@ function getNewBooks(feedURL, container) {
 	    	dataType: 'json',
 	    	data: {
 	    		rss_url: feedURL,
-	    		api_key: '',
+	    		api_key: 'ENTER API KEY FROM RSS2JSON',
 	    		count: 100
 	    	}
 	    }).done(function (response) {
