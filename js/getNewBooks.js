@@ -10,7 +10,7 @@ function getNewBooks(feedURL, container) {
 	    	dataType: 'json',
 	    	data: {
 	    		rss_url: feedURL,
-	    		api_key: 'gsqcuav0ops7fe9amo108u9b8vg7chgkxgygiaw2',
+	    		api_key: '',
 	    		count: 100
 	    	}
 	    }).done(function (response) {
